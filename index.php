@@ -1,4 +1,13 @@
 <?php
+/*
+ * Plugin Name: Login Customizations
+ * Description: Local customizations for the login page
+ * Plugin URI: https://myrotvorets.center/
+ * Version: 1.0.0
+ * Author: Myrotvorets
+ * Author URI: https://myrotvorets.center/
+ * License: MIT
+ */
 
 use Myrotvorets\WordPress\LoginCustomization\Plugin;
 
