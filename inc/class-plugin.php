@@ -15,6 +15,7 @@ final class Plugin {
 
 	private function __construct() {
 		$this->login_init();
+		$this->fix_wp_globals();
 	}
 
 	public function login_init(): void {
@@ -23,6 +24,20 @@ final class Plugin {
 		add_filter( 'login_redirect', [ $this, 'login_redirect' ] );
 		add_filter( 'login_title', [ $this, 'login_title' ] );
 		add_filter( 'shake_error_codes', '__return_empty_array' );
+	}
+
+	private function fix_wp_globals(): void {
+		global $user_login, $error;
+
+		if ( empty( $user_login ) ) {
+			// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+			$user_login = '';
+		}
+
+		if ( empty( $error ) ) {
+			// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+			$error = '';
+		}
 	}
 
 	public function login_head(): void {
